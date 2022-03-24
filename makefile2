@@ -1,0 +1,22 @@
+CC = gcc # compiler
+CFLAGS = -ansi -Wall -pedantic -std=c90 # gcc flags
+EXE_O_DEPS = mycomp.o complex.o util_input_table.o util_command_execute.o # dependencies for executable
+
+# final executable
+mycomp: $(EXE_O_DEPS)
+	$(CC) -g $(EXE_O_DEPS) $(CFLAGS) -lm -o $@
+
+mycomp.o:mycomp.c
+	$(CC) -c mycomp.c $(CFLAGS) -o $@
+
+complex.o: complex.c
+	$(CC) -c complex.c $(CFLAGS) -o $@
+
+util_input_table.o: util_input_table.c
+	$(CC) -c util_input_table.c $(CFLAGS) -o $@
+
+util_command_execute.o: util_command_execute.c
+	$(CC) -c util_command_execute.c $(CFLAGS) -o $@
+
+clean:
+	rm *.o
